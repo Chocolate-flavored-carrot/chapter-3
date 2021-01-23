@@ -1,32 +1,19 @@
-# chapter-3
+数据类型关键字
+int关键字表示基本整数类型。(long,short,unsigned和signed)用于提供基本整数类型的变式，例：unsigned short int和long long int。
+char关键字用于指定字母和其他字符（如，#，$,%和*）。另外char类型也可表示较小的整数。
+float，double，和long double表示带小数点的数。_Bool表示布尔值（true或false），_Complex和_Imaginary分别表示复数和虚数。
+通过这些关键字创建的类型，按计算机的存储方式可分为两大基本类型：整数类型和浮点数类型。
 
-#include <stdio.h>
-int main(void)
-{
-	float weight;//你的体重
-	float value;//相等重量的白金价值
-
-	printf("Are you worth your weight in platinum?\n");
-	printf("Let's check it out.\n");
-	printf("Please enter your weight in pounds:");
-	
-	//获取用户的输入
-	scanf_s("%f",&weight);
-	//假设白金的价格是每盎司$1700 
-	//14.5833是把英镑常衡盎司转换为金衡盎司
-	value = 1700.0 * weight * 14.5833;
-	printf("Your weight in platinum is worth $%.2f.\n", value);
-	printf("You are easily worth that! If platinum prices drop,\n");
-	printf("eat more to maintain your value.\n");
-	
-	getchar();/*此处用了两个getchar函数，它读取下一个输入字符，因此程序会等待用户输入。第一个getchar读取换行符，第二个
-			  让程序暂停，等待输入。*/       
-	getchar();
-
-	return 0;
-}
-分析；
-1.新引入了声明变量浮点数类型（float），可以储存带小数的数字。
-2.为了打印新类型的变量，在printf()中使用%f来处理浮点值，%.2f中的.2是指定输出的浮点数只显示小数点后两位。（%d是整数的占位符）
-3.scanf_s()函数用于读取键盘的输入。%f说明scanf_s（）是要读取用户从键盘上输入的浮点数，&weight告诉scanf_s把输入的值赋给weight的变量
-4.本程序突出了它的交互性。
+3.4 C语言基本数据类型
+3.4.1 int类型
+1.声明int变量
+一种是直接声明 int dog
+一种是通过函数（如，scanf（））获得值
+第三种是初始化变量
+初始化变量就是为变量赋一个初始值。在C语言中，初始化可以直接在声明中完成。只需在变量名后面加上赋值运算符（=）和变量值即可。
+例：int hogs=21;
+简而言之声明为变量创建和标记存储空间，并为其指定初始值。
+2.int类型常量
+上面出现的整数都是整型常量或者整型字面量。
+C语言把大多数整型常量视为int类型，但是非常大的整数例外。（详见long常量和longlong常量两小节）
+3.打印int值

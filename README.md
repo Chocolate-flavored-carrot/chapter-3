@@ -53,3 +53,62 @@ long常量和long long常量
 在有些情况下会用long类型存储一个小的数字 需要在数字末尾加上l或者L  例如：在int为16位long为32位的系统中，会把7作为16位存储，把7L作为32位存储。
 在支持longlong的系统中可以使用ll（LL）后缀表示 ull也可以。
 
+整数溢出
+如果整数超出了相应的类型的取值会如何？
+//toobig.c 超出系统允许的最大int值
+#include <stdio.h>
+int main(void)
+{
+	int i = 2147483647;
+	unsigned int j = 4294967295;
+
+	printf("%d %d %d\n",i,i+1,i+2);
+	printf("%u %u %u\n",j, j+1, j+2);//printf()函数使用%u说明显示unsigned int类型的值
+
+	getchar();
+	return 0;
+}
+运行结果：2147483647 -2147483648 -2147483647
+          4294967295 0 1
+ 可以明显看到unsigned类型达到最大值时会从新从起始点开始也就是从0开始。
+ int类型达到最大值时会从-2147483648开始。
+ 因此在编程时应注意此类问题，以防出现溢出行为。
+ 溢出行为是未定义的行为。
+ 
+ 4.打印short，long，long long，和unsigned类型
+ 打印unsigned int类型的用%u转换说明；
+ long的用%ld，若在系统中int和long大小相同，直接用%d，但是这样的程序被移植到其他系统（int和long大小不同的系统）中会无法正常工作。
+ %lx表示用十六进制格式打印long类型整数
+ %lo表示用八进制格式打印long类型整数 
+ 注：虽然c允许使用大小写或小写的常量后缀，但是在转换说明中只能用小写。
+ short类型可以用h前缀，%hd表示以十进制显示short类型的整数，%ho表示以八进制显示short类型的整数。h和l前缀都可以和u搭配使用，用来表示无符号类型（%lu）。
+ 
+ //print2.c 更多printf()的特性
+#include <stdio.h>
+int main(void)
+{
+	unsigned int un = 3000000000;
+	short end = 200;
+	long big = 65537;
+	long long verybig = 12345678908642;
+
+	printf("un = %u and not %d\n",un, un);
+	printf("end = %hd and %d\n",end, end);
+	printf("big = %ld and not %hd\n",big,big);
+	printf("verybig = %lld and not %ld\n",verybig,verybig);
+
+	getchar();
+
+	return 0;
+}
+输出：un = 3000000000 and not -1294967296
+end = 200 and 200
+big = 65537 and not 1
+verybig = 12345678908642 and not 1942899938
+第一行显示负数是因为un超过了int的范围，但它们在系统内存中表示完全相同。
+第二行打印的值相同，因为C编译器把short类型的值自动自动转换成int类型，原因就是int类型被认为是计算机处理整数类型时最高效的类型。
+h修饰符的作用：可以显示较大整数被断成short类型值的情况。
+第三行就演示了这种情况，把65537以二进制写成一个32位数是000000000000000010000000000000001。使用%hd printf()只会打印后16位，因此显示1
+最后一行先显示了verybig的完整值，然后由于使用了%ld，printf（）只显示了存储在32位后面的值。
+
+ 

@@ -74,3 +74,24 @@ beep='\007';
 
 4.打印字符
 print()函数用%c指明待打印的字符。
+前面说过，一个字符变量实际上被存储为1字节的整数值。如果要用%d转换说明打印char类型变量的值，打印的是一个整数。
+而%c转换说明告诉printf（）打印改整数值对应的字符。
+//charcode.c显示自负的代码编号
+#include <stdio.h>
+int main(void)
+{
+	char ch;
+
+	printf("please enter a character.\n");
+	scanf_s("%c",&ch); //用户输入字符
+	printf("The code for %c is %d.\n",ch, ch);
+	getchar();
+	getchar();
+	return 0;
+}
+运行结果：（我输入了“a”）
+please enter a character.
+a 
+The code for a is 97.
+注：printf（）函数中的转换说明决定了数据的显示方式，而不是数据的存储方式。
+5.有符号还是无符号

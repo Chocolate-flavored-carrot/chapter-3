@@ -32,4 +32,19 @@ int main(void)
 运行结果：
 First, assume int32_t is int:me32 = 45933945 //假设int32_t是整数类型
 Next, let's not make any assumption. //接下来，我们不要做任何假设。
-Instead,use a "macro"form inttypes.h: me32 = 45933945    //而是从inttypes 中使用“宏”的形式
+Instead,use a "macro"form inttypes.h: me32 = 45933945    //而是从inttypes 中使用“宏”的形式。
+
+3.4.6 floa、double和long double
+前面提到过，浮点数累死你个能表示包括小数在内更大范围的数。浮点数的表述类似于科学技术法。
+指数计数法中的e代表10的指数。
+1.声明浮点型变量
+float noah， jonah；
+double trouble;
+float planck = 6.63e-34;
+long double gnp;
+2.浮点型常量
+在代码中，可以用多种形式书写浮点型常量。浮点型常量的基本形式是：有符号的数字（包括小数点），后面紧跟e或E，最后是一个有符号数表示10的指数。
+-1.56E+12
+正号可以省略。可以没有小数点或指数部分，但是不能同时省略。可以省略小数部分，也可省略整数部分，但是不能同时省略。
+不要在浮点型常量中间加空格：1.56 E+12 错误！！
+

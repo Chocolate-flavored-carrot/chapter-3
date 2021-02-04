@@ -55,3 +55,37 @@ printf()函数使用%f转换说明打印十进制记数法的float和double类�
 如果系统支持十六进制格式的浮点数，可用a和A分别代替e和E。
 打印long double类型要使用%Lf %Le %La
 注：十六进制a等于十进制
+
+//showf_pt.c --以两种方式显示float类型的值
+#include <stdio.h>
+int main(void)
+{
+	float aboat = 32000.0;
+	double abet = 2.14e9;
+	long double dip = 5.32e-5;
+
+	printf("%f can be written %e\n", aboat, aboat);
+	//下一行要求编译器支持c99或其中的相关特性
+	printf("And it's %a in hexadecimal, powers of 2 notation\n",aboat);
+	printf("%f can be written %e\n", abet, abet);
+	printf("%Lf can be written %Le\n",dip,dip);
+
+	getchar();
+	return 0;
+
+}
+输出结果：
+32000.000000 can be written 3.200000e+04
+And it's 0x1.f400000000000p+14 in hexadecimal, powers of 2 notation
+2140000000.000000 can be written 2.140000e+09
+0.000053 can be written 5.320000e-05
+注：%a是以指数形式输出一个浮点数(十六进制)。
+
+该程序只演示了默认的输出效果。下一章将介绍如何通过设置字段宽度和小数位数来控制输出格式。
+
+4.浮点值得上溢和下溢
+假设系统的最大float类型值是3.4E38,编写如下代码：
+float toobig=3.4E38 * 100.0f;
+printf("%e\n", toobig);
+会发生上溢。输出的值应该是inf 或者infinity。
+下溢：
